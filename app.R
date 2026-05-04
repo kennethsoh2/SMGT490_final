@@ -1,25 +1,24 @@
 library(shiny)
 library(tidyverse)
-library(here)
 library(xgboost)
 library(ggplot2)
 
-stuff_model <- readRDS(here("data", "stuff_model_final.rds"))
-pitch_levels <- readRDS(here("data", "pitch_levels.rds"))
-feature_formula <- readRDS(here("data", "feature_formula.rds"))
+stuff_model <- readRDS("data/stuff_model_final.rds")
+pitch_levels <- readRDS("data/pitch_levels.rds")
+feature_formula <- readRDS("data/feature_formula.rds")
 
-scaling <- readRDS(here("data", "stuff_scaling.rds"))
+scaling <- readRDS("data/stuff_scaling.rds")
 stuff_mean <- scaling$mean
 stuff_sd <- scaling$sd
 lower_bound <- scaling$lower
 upper_bound <- scaling$upper
 
-pitch_physics_raw <- readRDS(here("data", "pitch_data.rds"))
+pitch_physics_raw <- readRDS("data/pitch_data_app.rds")
 
 pitch_physics_raw <- pitch_physics_raw %>%
   mutate(pitcher_id = as.character(pitcher_id))
 
-player_lookup_raw <- read_csv(here("data", "player.csv"))
+player_lookup_raw <- read_csv("data/player.csv")
 
 pitcher_lookup <- player_lookup_raw %>%
   transmute(
