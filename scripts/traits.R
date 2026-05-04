@@ -463,7 +463,7 @@ feature_importance <- ggplot(
   geom_hline(yintercept = 0, linetype = "dashed", color = "black") +
   geom_text(
     aes(label = round(value, 3)),
-    hjust = ifelse(value > 0, -0.1, 1.1)
+    hjust = ifelse(value > 0, -0.1, 1.1),
     size = 4
   ) +
   coord_flip() +
